@@ -1,6 +1,6 @@
 package com.example.simpledaggerhilt.data
 
-data class BaseResult <out T>(val status: Status, val data: T?, val message: String?) {
+data class BaseResource <out T>(val status: Status, val data: T?, val message: String?) {
 
     enum class Status {
         SUCCESS,
@@ -9,16 +9,16 @@ data class BaseResult <out T>(val status: Status, val data: T?, val message: Str
     }
 
     companion object {
-        fun <T> success(data: T?): BaseResult<T> {
-            return BaseResult(Status.SUCCESS, data, null)
+        fun <T> success(data: T?): BaseResource<T> {
+            return BaseResource(Status.SUCCESS, data, null)
         }
 
-        fun <T> error(message: String?, error: BaseError?): BaseResult<T> {
-            return BaseResult(Status.ERROR, null, message)
+        fun <T> error(message: String?, data: T? = null): BaseResource<T> {
+            return BaseResource(Status.ERROR, null, message)
         }
 
-        fun <T> loading(data: T? = null): BaseResult<T> {
-            return BaseResult(Status.LOADING, data, null)
+        fun <T> loading(data: T? = null): BaseResource<T> {
+            return BaseResource(Status.LOADING, data, null)
         }
     }
 
