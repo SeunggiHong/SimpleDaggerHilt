@@ -1,8 +1,7 @@
-package com.example.simpledaggerhilt.data.folder
+package com.example.simpledaggerhilt.data.folder.dto
 
-import com.example.simpledaggerhilt.data.login.dto.LoginResponseItem
 import com.google.gson.annotations.SerializedName
 
 data class FolderResponse(
-    @field:SerializedName("userCookie") val userCookie: List<LoginResponseItem>
+    @field:SerializedName("categoryList") val categoryList: List<FolderResponseItem>
 )
