@@ -1,4 +1,4 @@
-package com.example.simpledaggerhilt
+package com.example.simpledaggerhilt.di
 
 import dagger.Module
 import dagger.Provides
@@ -11,16 +11,16 @@ import kotlinx.coroutines.Dispatchers
 @Module
 internal object CoroutinesModule {
 
-    @Provides
-    fun providesDefaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
+//    @Provides
+//    fun providesDefaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
 
     @Provides
     fun providesIoDispatcher(): CoroutineDispatcher = Dispatchers.IO
 
-    @Provides
-    fun providersMainDispatcher(): CoroutineDispatcher = Dispatchers.Main
+//    @Provides
+//    fun providersMainDispatcher(): CoroutineDispatcher = Dispatchers.Main
 
-    @Provides
-    fun providesMainImmediateDispatcher(): CoroutineDispatcher = Dispatchers.Main.immediate
+//    @Provides
+//    fun providesMainImmediateDispatcher(): CoroutineDispatcher = Dispatchers.Main.immediate
 
 }
