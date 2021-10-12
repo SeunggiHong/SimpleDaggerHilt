@@ -1,16 +1,16 @@
 package com.example.simpledaggerhilt.api
 
+import com.example.simpledaggerhilt.data.folder.dto.FolderResponse
 import com.example.simpledaggerhilt.data.login.dto.LoginRequest
 import com.example.simpledaggerhilt.data.login.dto.LoginResponse
+import retrofit2.Call
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.POST
+import retrofit2.http.*
 
-interface KnotKoqService {
+interface LoginService {
 
-    @POST("WEB/LOGIN")
-    suspend fun login(
-        @Body loginRequest: LoginRequest
-    ) : Response<LoginResponse>
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST("web/login")
+    suspend fun login(@Body loginRequest: LoginRequest) : Response<LoginResponse>
 
 }

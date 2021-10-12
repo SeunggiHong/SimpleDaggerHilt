@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class FolderViewModel @Inject constructor(
     private val folderRepository: FolderRepository
-    ) : ViewModel() {
+) : ViewModel() {
 
     private val _folderList = MutableLiveData<BaseResource<FolderResponse>>()
     val folderList: LiveData<BaseResource<FolderResponse>> = _folderList
@@ -29,6 +29,7 @@ class FolderViewModel @Inject constructor(
     private fun fetchFolders() {
         viewModelScope.launch {
             folderRepository.fetchFolderList().collect { result ->
+                Timber.d("FolderViewModel > fetchFolders() > result : {$result}")
                 _folderList.value = result
             }
         }

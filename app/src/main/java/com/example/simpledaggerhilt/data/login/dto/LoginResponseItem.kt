@@ -1,10 +1,10 @@
-package com.example.simpledaggerhilt.data.login
+package com.example.simpledaggerhilt.data.login.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class LoginItem(
-    @field:SerializedName("hashKey") val hashKey: String,
-    @field:SerializedName("fullName") val fullName: String,
-    @field:SerializedName("hashKey") val id: String,
-    @field:SerializedName("pic") val pic: String
+data class LoginResponseItem(
+    val hashKey: String,
+    val fullName: String,
+    val id: String,
+    val pic: String
 )
