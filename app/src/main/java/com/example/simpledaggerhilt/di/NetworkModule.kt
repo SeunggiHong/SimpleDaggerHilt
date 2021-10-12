@@ -1,11 +1,11 @@
 package com.example.simpledaggerhilt.di
 
-import com.example.simpledaggerhilt.api.HttpRequestInterceptor
 import com.example.simpledaggerhilt.utils.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -18,10 +18,21 @@ object NetworkModule {
 
     @Singleton
     @Provides
-     fun provideOkHttpClient(): OkHttpClient {
+    fun provideInterceptor(): Interceptor {
+        return Interceptor {
+            val originalRequest = it.request()
+            val request = originalRequest.newBuilder().url(originalRequest.url).build()
+            Timber.d("{$request.toString()}")
+            it.proceed(request)
+        }
+    }
+
+    @Singleton
+    @Provides
+     fun provideOkHttpClient(interceptor: Interceptor): OkHttpClient {
         Timber.d("NetworkModule provideOkHttpClient()")
          return OkHttpClient.Builder()
-             .addInterceptor(HttpRequestInterceptor())
+             .addInterceptor(interceptor)
              .build()
     }
 
