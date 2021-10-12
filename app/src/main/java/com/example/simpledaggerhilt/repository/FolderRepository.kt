@@ -3,6 +3,7 @@ package com.example.simpledaggerhilt.repository
 import com.example.simpledaggerhilt.data.BaseResource
 import com.example.simpledaggerhilt.data.folder.dto.FolderResponse
 import com.example.simpledaggerhilt.data.folder.remote.FolderRemoteDataSource
+import com.example.simpledaggerhilt.di.IoDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -11,7 +12,7 @@ import javax.inject.Inject
 
 class FolderRepository @Inject constructor(
     private val folderRemoteDataSource: FolderRemoteDataSource,
-    private val ioDispatcher: CoroutineDispatcher
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : Repository {
 
     suspend fun fetchFolderList(): Flow<BaseResource<FolderResponse>?> {

@@ -5,6 +5,7 @@ import com.example.simpledaggerhilt.data.folder.dto.FolderResponse
 import com.example.simpledaggerhilt.data.folder.remote.FolderRemoteDataSource
 import com.example.simpledaggerhilt.data.grab.GrabResponse
 import com.example.simpledaggerhilt.data.grab.remote.GrabRemoteDataSource
+import com.example.simpledaggerhilt.di.IoDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -13,7 +14,7 @@ import javax.inject.Inject
 
 class GrabRepository @Inject constructor(
     private val grabRemoteDataSource: GrabRemoteDataSource,
-    private val ioDispatcher: CoroutineDispatcher
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : Repository {
 
     suspend fun fetchGrabAllList(): Flow<BaseResource<GrabResponse>?> {
